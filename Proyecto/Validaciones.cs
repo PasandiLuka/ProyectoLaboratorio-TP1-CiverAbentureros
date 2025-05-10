@@ -25,17 +25,26 @@ namespace Proyecto
         }
         public static void EnteroBetween(int nombreAtributo, int minimo, int maximo, string mensaje)
         {
-            if(!(nombreAtributo >=minimo && nombreAtributo <=maximo))
+            if(!(nombreAtributo >= minimo && nombreAtributo <= maximo))
             {
                 throw new ArgumentException(mensaje);
             }
         }
-        public static void Date(string nombreAtributo, string mensaje)
+        public static DateOnly Fecha (string nombreAtributo)
         {
             if(!DateOnly.TryParse(nombreAtributo, out DateOnly resultado))
             {
-                throw new ArgumentException(mensaje);
+                throw new ArgumentException("La fecha debe poseer el formato 'YYYY-MM-DD'");
             }
+            return resultado;
+        }
+        public static TimeSpan Hora (string nombreAtributo)
+        {
+            if(!TimeSpan.TryParse(nombreAtributo, out TimeSpan resultado))
+            {
+                throw new ArgumentException("El formato de la hora debe ser '00:00'");
+            }
+            return resultado;
         }
         public static void CorreoElectronico(string nombreAtributo)
         {
@@ -49,5 +58,6 @@ namespace Proyecto
             }else
                 throw new ArgumentException(mensaje);   
         }
+        
     }
 }
