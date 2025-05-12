@@ -23,6 +23,9 @@ public class Cliente
         this.nacionalidad = nacionalidad;
         this.nacimiento = Validaciones.Fecha(nacimiento);
     }
+
+    public void MostrarDatos() => Console.WriteLine($"Nombre: {nombreCom} \nDNI: {DNI} \nCorreo Electronico: {correoElectronico} \nTelefono: {telefono} \nNacionalidad: {nacionalidad} \nNacimiento: {nacimiento}");
+
     private void ValidarTelefono(long telefono)
     {
         if(!(telefono >= 541100000000 && telefono <= 541199999999))
@@ -69,4 +72,6 @@ public class Cliente
     public long GetTelefono() => this.telefono;
     public string GetNacionalidad() => this.nacionalidad;
     public DateOnly GetNacimiento() => this.nacimiento;
+
+    
 }   

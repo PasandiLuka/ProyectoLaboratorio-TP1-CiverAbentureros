@@ -13,7 +13,6 @@ public class Transporte
     private int numeroAsiento { get; set; }
     private TimeSpan horarioSalida { get; set; }
 
-
     public Transporte(int tipo, string empresa, string horarioSalida)
     {
         Validaciones.EnteroBetween(tipo, 1, 3, "Elija entre las opciones brindadas");
@@ -28,6 +27,8 @@ public class Transporte
         }
         this.horarioSalida = Validaciones.Hora(horarioSalida);
     }
+
+    public void MostrarDatos() => Console.WriteLine($"Tipo de Transporte: {tipo} \nEmpresa: {empresa} \nNumero de asiento: {numeroAsiento} \nHorario de Salida: {horarioSalida}");
 
     //Setters
     public void SetTipo(int tipo)

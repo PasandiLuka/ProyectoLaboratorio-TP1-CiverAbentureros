@@ -7,9 +7,9 @@ public class PaqueteTuristico
     private double precioTotal {get; set;}
     private DateOnly fechaInicio {get; set;}
     private DateOnly fechaFin {get; set;}
-    private Hospedaje hospedaje {get; set;}
-    private Transporte transporte {get; set;}
-    private Actividad actividad {get; set;}
+    public Hospedaje hospedaje {get; private set;}
+    public Transporte transporte {get; private set;}
+    public Actividad actividad {get; private set;}
 
     public PaqueteTuristico(string nombre, string descripcion, double precioTotal, string fechaInicio, string fechaFin, Hospedaje hospedaje, Transporte transporte, Actividad actividad)
     {
@@ -20,9 +20,20 @@ public class PaqueteTuristico
         ValidarPrecioTotal(precioTotal);
         this.fechaInicio = Validaciones.Fecha(fechaInicio);
         this.fechaFin = Validaciones.Fecha(fechaFin);
+        ValidacionMayorFecha(this.fechaInicio, this.fechaFin);
         this.hospedaje = hospedaje;
         this.transporte = transporte;
         this.actividad = actividad;
+    }
+
+    public void MostrarDatos() => Console.WriteLine($"Nombre: {nombre} \nDescripcion: {descripcion} \n Precio Total: {precioTotal} \nFecha Inicio: {fechaInicio} \nFecha Fin: {fechaFin}");
+
+    public void ValidacionMayorFecha(DateOnly fechaInicio, DateOnly fechaFin)
+    {
+        if (fechaInicio > fechaFin)
+        {
+            throw new ArgumentException("La fecha de finalizacion debe ser posterior a la fecha de inicio.");
+        }
     }
 
     public void ValidarPrecioTotal(double precioTotal)
@@ -54,10 +65,12 @@ public class PaqueteTuristico
     public void SetFechaInicio(string fechaInicio)
     {
         this.fechaInicio = Validaciones.Fecha(fechaInicio);
+        ValidacionMayorFecha(this.fechaInicio, this.fechaFin);
     }
     public void SetFechaFin(string fechaFin)
     {
         this.fechaFin = Validaciones.Fecha(fechaFin);
+        ValidacionMayorFecha(this.fechaInicio, this.fechaFin);
     }
 
     //Getters

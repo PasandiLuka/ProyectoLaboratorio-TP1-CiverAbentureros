@@ -14,7 +14,7 @@ public class Hospedaje
     private short cantidadEstre {get; set;}
     private TipoHabitacion tipo;
     private bool desayuno {get; set;}
-
+    
     public Hospedaje(string nombre, string direccion, short cantidadEstre, int tipo)
     {
         Validaciones.CadenaMin(nombre, 3, "El nombre del hotel no puede poseer menos de 3 caracteres");
@@ -31,9 +31,10 @@ public class Hospedaje
         }else
         {
             this.desayuno = false;
-        }
-            
+        }   
     }
+
+    public void MostrarDatos() => Console.WriteLine($"Nombre: {nombre} \nDireccion: {direccion} \nCantidad de Estrellas: {cantidadEstre} \nTipo de Habitacion: {tipo} \nContiene desayuno: {desayuno}"); 
 
     //Setters
     public void SetNombre (string nombre)

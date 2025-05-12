@@ -15,6 +15,7 @@ public class Actividad
     private bool opcional {get; set;}
     private string lugar {get; set;} 
 
+
     public Actividad(int tipo, string nombre, string descripcion, int duracion, short opcional, string lugar)
     {
         Validaciones.EnteroBetween(tipo, 1, 3, "Elija entre las opciones brindadas");
@@ -39,6 +40,7 @@ public class Actividad
         this.lugar = lugar;
     }
     
+    public void MostrarDatos() => Console.WriteLine($"Nombre: {nombre} \nTipo de Actividad: {tipo} \nDescripcion: {descripcion} \nDuracion(en Horas): {duracion} \nOpcional?: {opcional} \nLugar: {lugar}");
 
     //Setters
     public void SetTipoActividad(int tipo)
