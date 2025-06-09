@@ -30,6 +30,13 @@ namespace Proyecto
                 throw new ArgumentException(mensaje);
             }
         }
+        public static void FloatBetween(float nombreAtributo, int minimo, int maximo, string mensaje)
+        {
+            if(!(nombreAtributo >= minimo && nombreAtributo <= maximo))
+            {
+                throw new ArgumentException(mensaje);
+            }
+        }
         public static DateOnly Fecha (string nombreAtributo)
         {
             if(!DateOnly.TryParse(nombreAtributo, out DateOnly resultado))
@@ -48,7 +55,8 @@ namespace Proyecto
         }
         public static void CorreoElectronico(string nombreAtributo)
         {
-            string mensaje = "El mail debe poseer el siguiente formato: minimo tres caracteres antes de '@', minimo tres caracteres entre el '@' y el punto, y tres caracteres a continuacion del '.' por ejemplo: 'hola@gmail.com";
+            string mensaje = "El mail debe poseer el siguiente formato: minimo tres caracteres antes del '@', minimo tres caracteres entre el '@' y el punto, y tres caracteres a continuacion del '.' por ejemplo: 'hola@gmail.com";
+
             if(nombreAtributo.LastIndexOf("@") < nombreAtributo.LastIndexOf("."))
             {
                 if (!((nombreAtributo.LastIndexOf("@") >= 3) && ((nombreAtributo.Substring(nombreAtributo.LastIndexOf("@"), nombreAtributo.LastIndexOf(".") - nombreAtributo.LastIndexOf("@"))).Length >= 4) && ((nombreAtributo.Substring(nombreAtributo.LastIndexOf("."))).Length == 4)))

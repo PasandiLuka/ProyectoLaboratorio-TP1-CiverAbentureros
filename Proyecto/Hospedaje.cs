@@ -11,18 +11,12 @@ public class Hospedaje
 
     private string nombre {get; set;}
     private string direccion {get; set;}
-    private short cantidadEstre {get; set;}
+    private float cantidadEstre {get; set;}
     private TipoHabitacion tipo;
     private bool desayuno {get; set;}
     
-    public Hospedaje(string nombre, string direccion, short cantidadEstre, int tipo)
+    public Hospedaje(int tipo, string nombre, string direccion, float cantidadEstre)
     {
-        Validaciones.CadenaMin(nombre, 3, "El nombre del hotel no puede poseer menos de 3 caracteres");
-        this.nombre = nombre;
-        Validaciones.CadenaMin(direccion, 3, "La direccion no puede contener menos de 3 caracteres");
-        this.direccion = direccion;
-        Validaciones.EnteroBetween(Convert.ToInt16(cantidadEstre), 0, 5, "Las estrellas deben ser un numero entero entre 0 y 5");
-        this.cantidadEstre = cantidadEstre;
         Validaciones.EnteroBetween(tipo, 1, 3, "Elija entre las opciones brindadas");
         this.tipo = (TipoHabitacion)tipo - 1;
         if(tipo == (int)TipoHabitacion.Suite)
@@ -31,10 +25,16 @@ public class Hospedaje
         }else
         {
             this.desayuno = false;
-        }   
+        } 
+        Validaciones.CadenaMin(nombre, 3, "El nombre del hotel no puede poseer menos de 3 caracteres");
+        this.nombre = nombre;
+        Validaciones.CadenaMin(direccion, 3, "La direccion no puede contener menos de 3 caracteres");
+        this.direccion = direccion;
+        Validaciones.FloatBetween(cantidadEstre, 0, 5, "Las estrellas deben ser un numero entero entre 0 y 5");
+        this.cantidadEstre = cantidadEstre;  
     }
 
-    public void MostrarDatos() => Console.WriteLine($"Nombre: {nombre} \nDireccion: {direccion} \nCantidad de Estrellas: {cantidadEstre} \nTipo de Habitacion: {tipo} \nContiene desayuno: {desayuno}"); 
+    public void MostrarDatos() => Console.WriteLine($"Nombre: {nombre} \nDireccion: {direccion} \nCantidad de Estrellas: {cantidadEstre} \nTipo de Habitacion: {tipo} \nContiene desayuno: {desayuno} \n"); 
 
     //Setters
     public void SetNombre (string nombre)
@@ -47,9 +47,9 @@ public class Hospedaje
         Validaciones.CadenaMin(direccion, 3, "La direccion no puede contener menos de 3 caracteres");
         this.direccion = direccion;
     }
-    public void SetCantidadEstre (short cantidadEstre)
+    public void SetCantidadEstre (float cantidadEstre)
     {
-        Validaciones.EnteroBetween(Convert.ToInt16(cantidadEstre), 0, 5, "Las estrellas deben ser un numero entero entre 0 y 5");
+        Validaciones.FloatBetween(cantidadEstre, 0, 5, "Las estrellas deben ser un numero entero entre 0 y 5");
         this.cantidadEstre = cantidadEstre;
     }
     public void SetTipoHabitacion (int tipo)
@@ -71,7 +71,7 @@ public class Hospedaje
     //Getters
     public string GetNombre() => nombre;
     public string GetDireccion() => direccion;
-    public short GetCantidadEstre() => cantidadEstre;
+    public float GetCantidadEstre() => cantidadEstre;
     public string GetTipoHabitacion() => Convert.ToString(tipo);
     public bool GetDesayuno() => desayuno;
 }

@@ -17,19 +17,19 @@ public class Reserva
     public Cliente cliente {get; private set;}
     public PaqueteTuristico paqueteTuristico {get; private set;}
 
-    public Reserva(int idReserva, int metodoPago, Cliente cliente, PaqueteTuristico paqueteTuristico)
+    public Reserva(int idReserva, int metodoPago)
     {
         DateOnly fechaReserva = DateOnly.FromDateTime(DateTime.Now);
         Validaciones.EnteroBetween(metodoPago, 1, 4, "Elija entre las opciones brindadas");
         this.metodoPago = (MetodoPago)metodoPago-1;
         Validaciones.Entero(idReserva);
         this.idReserva = idReserva;
+        this.monto = paqueteTuristico.GetPrecioTotal();
         this.cliente = cliente;
         this.paqueteTuristico = paqueteTuristico;
-        this.monto = paqueteTuristico.GetPrecioTotal();
     }
 
-    public void MostrarDatos() => Console.WriteLine($"Id: {idReserva} \nFecha de Reservacion: {fechaReserva} \nMonto: {monto}");
+    public void MostrarDatos() => Console.WriteLine($"Id: {idReserva} \nFecha de Reservacion: {fechaReserva} \nMonto: {monto} \n");
 
     public void ValidarMonto(double monto)
     {

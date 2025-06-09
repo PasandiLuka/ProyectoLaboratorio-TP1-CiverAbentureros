@@ -21,12 +21,13 @@ public class PaqueteTuristico
         this.fechaInicio = Validaciones.Fecha(fechaInicio);
         this.fechaFin = Validaciones.Fecha(fechaFin);
         ValidacionMayorFecha(this.fechaInicio, this.fechaFin);
+        
         this.hospedaje = hospedaje;
         this.transporte = transporte;
         this.actividad = actividad;
     }
 
-    public void MostrarDatos() => Console.WriteLine($"Nombre: {nombre} \nDescripcion: {descripcion} \n Precio Total: {precioTotal} \nFecha Inicio: {fechaInicio} \nFecha Fin: {fechaFin}");
+    public void MostrarDatos() => Console.WriteLine($"Nombre: {nombre} \nDescripcion: {descripcion} \n Precio Total: {precioTotal} \nFecha Inicio: {fechaInicio} \nFecha Fin: {fechaFin} \n");
 
     public void ValidacionMayorFecha(DateOnly fechaInicio, DateOnly fechaFin)
     {

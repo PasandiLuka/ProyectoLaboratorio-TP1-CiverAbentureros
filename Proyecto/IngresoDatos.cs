@@ -32,4 +32,10 @@ public class IngresoDatos
         short resultado = short.Parse(Console.ReadLine());
         return resultado;
     }
+    public static float Float(string mensaje)
+    {
+        Console.WriteLine(mensaje);
+        short resultado = short.Parse(Console.ReadLine());
+        return resultado;
+    }
 }
